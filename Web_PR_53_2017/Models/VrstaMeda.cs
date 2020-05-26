@@ -10,6 +10,7 @@ namespace Web_PR_53_2017.Models
         LIVADSKI,
         CVETNI,
         BAGREMOV,
-        RUZIN
+        RUZIN,
+		SUNCOKRETOV
     }
 }
