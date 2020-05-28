@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Web_PR_53_2017.Models;
 
 namespace Web_PR_53_2017.Controllers
 {
@@ -10,21 +11,17 @@ namespace Web_PR_53_2017.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            Korisnik korisnik = (Korisnik)Session["korisnik"];
+            if (korisnik == null)
+            {
+                return RedirectToAction("Index", "Authentication");
+            }
+
+            //dodaj sesiju za shopping cart ako ima
+
+            //List<Proizvod> proizvodi = (List<Proizvod>)HttpContext.Application["proizvodi"];
+            return View("Index","Proizvodi");
         }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        
     }
 }
