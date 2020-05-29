@@ -22,7 +22,11 @@ namespace Web_PR_53_2017
             KorisniciPodaci.UcitajKorisnikeIzDatoteke();
             List<Korisnik> korisnici = KorisniciPodaci.korisnici;
             HttpContext.Current.Application["korisnici"] = korisnici;
-            
+
+            ProizvodiPodaci.UcitajProizvodeIzDatoteke();
+            List<Proizvod> proizvodi = ProizvodiPodaci.proizvodi;
+            HttpContext.Current.Application["proizvodi"] = proizvodi;
+
         }
     }
 }

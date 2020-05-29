@@ -26,5 +26,13 @@ namespace Web_PR_53_2017.Models
         public double CenaPoTegli { get; set; }
         [Required(ErrorMessage = "Polje 'Broj Tegli' ne sme biti prazno!")]
         public int BrojTegli { get; set; }
+
+        public override string ToString()
+        {
+            return this.Id + ";" + this.Naziv + ";" + this.Vrsta.ToString() + ";" +
+                 this.Proizvodjac + ";" + this.AdresaProizvodjaca + ";" + this.Boja +
+                 this.Opis + ";" + this.CenaPoTegli + ToString() + ";" + this.BrojTegli.ToString();
+
+        }
     }
 }

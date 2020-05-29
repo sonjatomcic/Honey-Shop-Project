@@ -20,6 +20,8 @@ namespace Web_PR_53_2017.Controllers
         //GET Authentication/Register
         public ActionResult Registracija()
         {
+
+            //napravi proveru sta ako smo vec ulogovani
            // Korisnik korisnik = new Korisnik();
             //Session["korisnik"] = korisnik;
             return View();
@@ -29,10 +31,11 @@ namespace Web_PR_53_2017.Controllers
         [HttpPost]
         public ActionResult Registracija(Korisnik korisnik)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest
-            //}
+            if (!ModelState.IsValid)
+            {
+                 ViewBag.Greska = "Polja nisu validna";
+                return View();
+            }
 
             List<Korisnik> korisnici = (List<Korisnik>)HttpContext.Application["korisnici"];
             foreach(var kor in korisnici)
@@ -71,6 +74,14 @@ namespace Web_PR_53_2017.Controllers
         [HttpPost]
         public ActionResult Login(string korisnickoIme, string lozinka)
         {
+            //ako je vec ulogovan ne moze se logovati 
+            Korisnik korisnik = (Korisnik)Session["korisnik"];
+            if (korisnik != null)
+            {
+                ViewBag.Greska = "Vec ste ulogovani kao " + korisnik.KorisnickoIme;
+                return View();
+            }
+
             List<Korisnik> korisnici = (List<Korisnik>)HttpContext.Application["korisnici"];
             Korisnik kor = korisnici.FirstOrDefault(k => k.KorisnickoIme == korisnickoIme && k.Lozinka == lozinka);
             if (kor != null)

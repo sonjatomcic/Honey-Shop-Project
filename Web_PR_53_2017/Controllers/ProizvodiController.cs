@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Web_PR_53_2017.Models;
 
 namespace Web_PR_53_2017.Controllers
 {
@@ -11,7 +12,8 @@ namespace Web_PR_53_2017.Controllers
         // GET: Proizvodi
         public ActionResult Index()
         {
-            return View();
+            List<Proizvod> proizvodi = (List<Proizvod>)HttpContext.Application["proizvodi"];
+            return View(proizvodi);
         }
     }
 }
