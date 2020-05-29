@@ -27,5 +27,12 @@ namespace Web_PR_53_2017.Models
         public DateTime DatumRodjenja { get; set; }
         [Required(ErrorMessage = "Polje 'Uloga' ne sme biti prazno!")]
         public Uloga Uloga { get; set; }
+
+        public override string ToString()
+        {
+            return this.KorisnickoIme + ";" + this.Lozinka + ";" + this.Ime + ";" + this.Prezime + ";" +
+                            this.Pol.ToString() + ";" + this.Email + ";" + this.DatumRodjenja.Date.ToString("dd/MM/yyyy")
+                            + ";" + this.Uloga.ToString();
+        }
     }
 }

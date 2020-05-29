@@ -1,0 +1,4 @@
+admin1;peki;pera;peric;MUSKI;pera@gmail.com;10/12/1991;ADMINISTRATOR
+admin2;maki;marko;markovic;MUSKI;marko@gmail.com;04/05/1995;ADMINISTRATOR
+admin3;miki;mira;miric;ZENSKI;mira@gmail.com;21/09/1998;ADMINISTRATOR
+solesokol;sonjatomcic;sonja;tomcic;ZENSKI;sonjatomcic@gmail.com;12/05/2020;KUPAC

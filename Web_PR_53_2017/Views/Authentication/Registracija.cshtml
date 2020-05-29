@@ -1,0 +1,53 @@
+﻿@model Web_PR_53_2017.Models.Korisnik
+
+@{
+    ViewBag.Title = "Registracija";
+}
+
+<h2>Registracija</h2>
+
+<div>@ViewBag.Greska</div>
+
+<form action="~/Authentication/Registracija" method="post">
+    <table>
+        <tr>
+            <td>Korisnicko Ime:</td>
+            <td><input type="text" name="korisnickoIme" /></td>
+        </tr>
+        <tr>
+            <td>Lozinka:</td>
+            <td><input type="password" name="lozinka" /></td>
+        </tr>
+        <tr>
+            <td>Ime:</td>
+            <td><input type="text" name="ime" /></td>
+        </tr>
+        <tr>
+            <td>Prezime:</td>
+            <td><input type="text" name="prezime" /></td>
+        </tr>
+        <tr>
+            <td>Pol:</td>
+            <td>
+                <input list="polovi" name="pol" />
+                <datalist id="polovi">
+                    <option value="MUSKI"></option>
+                    <option value="ZENSKI"></option>
+                </datalist>
+            </td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" name="email" /></td>
+        </tr>
+        <tr>
+            <td>Datum Rodjenja:</td>
+            <td><input type="date" name="datumRodjenja" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Registracija" /></td>
+        </tr>
+    </table>
+
+</form>
+

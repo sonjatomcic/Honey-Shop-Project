@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Proizvod>
+@using Web_PR_53_2017.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Proizvodi</h2>
+
+<table border="1">
+    
+    <tr>
+        <th>Id</th>
+        <th>Naziv</th>
+        <th>Vrsta</th>
+        <th>Proizvodjac</th>
+        <th>Adresa Proizvodjaca</th>
+        <th>Boja</th>
+        <th>Opis</th>
+        <th>Cena po Tegli</th>
+        <th>Broj tegli</th>
+    </tr>
+    @foreach(Proizvod p in Model)
+    {
+        <tr>
+            <td>@p.Id</td>
+            <td>@p.Naziv</td>
+            <td>@p.Vrsta.ToString()</td>
+            <td>@p.Proizvodjac</td>
+            <td>@p.AdresaProizvodjaca</td>
+            <td>@p.Boja</td>
+            <td>@p.Opis</td>
+            <td>@p.CenaPoTegli</td>
+            <td>@p.BrojTegli</td>
+        </tr>
+    }
+
+</table>
+
+<a href="~/Authentication/Logout">LogOut</a>
