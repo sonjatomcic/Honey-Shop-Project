@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Korisnik>
+@using Web_PR_53_2017.Models
+@{
+                /**/
+
+                ViewBag.Title = "Index";
+}
+
+
+<h2>Korisnici</h2>
+
+<div>@ViewBag.Greska</div>
+
+@{
+    Korisnik korisnik = (Korisnik)Session["korisnik"];
+}
+
+@if (korisnik != null && korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
+{
+    <table class="table table-hover table-striped">
+
+        <tr>
+            <th>Korisnicko Ime</th>
+            <th>Lozinka</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Pol</th>
+            <th>Email</th>
+            <th>Datum Rodjenja</th>
+            <th>Uloga</th>
+            <th></th>
+
+        </tr>
+        @foreach (Korisnik k in Model)
+        {       
+             //korisnickoIme = "pera";
+            
+            <tr>
+                <td>@k.KorisnickoIme</td>
+                <td>@k.Lozinka</td>
+                <td>@k.Ime</td>
+                <td>@k.Prezime</td>
+                <td>@k.Pol.ToString()</td>
+                <td>@k.Email</td>
+                <td>@k.DatumRodjenja.ToString("dd/MM/yyyy")</td>
+                <td>@k.Uloga.ToString()</td>
+                <td>
+                    <form action="~/Korisnici/Obrisi" method="get">
+                        <input type="hidden" name="korisnickoIme" value="@k.KorisnickoIme" />
+                        <input type="submit"  value="Obrisi" class="btn btn-primary" />
+                    </form>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <a href="~/Proizvodi/Index" >Proizvodi</a>
+}
+
+
+

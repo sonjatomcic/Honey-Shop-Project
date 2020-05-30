@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<Proizvod>
 @using Web_PR_53_2017.Models
+
 @{
-    ViewBag.Title = "Index";
+    Korisnik korisnik = (Korisnik)Session["korisnik"];
 }
 
 <h2>Proizvodi</h2>
 
-<table border="1">
-    
+<table class="table table-hover table-striped">
+
     <tr>
         <th>Id</th>
         <th>Naziv</th>
@@ -17,9 +18,12 @@
         <th>Boja</th>
         <th>Opis</th>
         <th>Cena po Tegli</th>
-        <th>Broj tegli</th>
+        @if (korisnik != null && korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
+        {
+            <th>Broj tegli</th>
+        }
     </tr>
-    @foreach(Proizvod p in Model)
+    @foreach (Proizvod p in ViewBag.Proizvodi)
     {
         <tr>
             <td>@p.Id</td>
@@ -30,10 +34,99 @@
             <td>@p.Boja</td>
             <td>@p.Opis</td>
             <td>@p.CenaPoTegli</td>
-            <td>@p.BrojTegli</td>
+            @if (korisnik != null && korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
+            {
+                <td>@p.BrojTegli</td>
+            }
+
         </tr>
     }
 
 </table>
+<a href="~/Proizvodi/Index">Svi proizvodi</a>
+@if (korisnik != null && korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
+{
+<a href="~/Proizvodi/Dodaj">Dodaj proizvod</a>
+}
+<br />
 
-<a href="~/Authentication/Logout">LogOut</a>
+<h3>Sortiraj proizvode</h3>
+<form action="~/Proizvodi/Sortiraj" method="get">
+    <table>
+        <tr>
+
+            <td>
+                <input list="sortPo" name="vrsta" />
+                <datalist id="sortPo">
+                    <option value="NAZIV"></option>
+                    <option value="VRSTA MEDA"></option>
+                    <option value="CENA"></option>
+                </datalist>
+            </td>
+            <td>
+                <input list="sortNacin" name="nacin" />
+                <datalist id="sortNacin">
+                    <option value="RASTUCE"></option>
+                    <option value="OPADAJUCE"></option>
+                </datalist>
+            </td>
+            <td><input type="submit" value="Submit" /></td>
+
+        </tr>
+    </table>
+</form>
+
+<h3>Pretraga po nazivu</h3>
+<form action="~/Proizvodi/PretragaPoNazivu" method="get">
+    <table>
+        <tr>
+            <td><input type="text" name="naziv" /></td>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+
+<h3>Pretraga po vrsti</h3>
+<form action="~/Proizvodi/PretragaPoVrsti" method="get">
+    <table>
+        <tr>
+            <td>
+                <input list="vrste" name="vrsta" />
+                <datalist id="vrste">
+                    <option value="LIVADSKI"></option>
+                    <option value="CVETNI"></option>
+                    <option value="BAGREMOV"></option>
+                    <option value="RUZIN"></option>
+                    <option value="SUNCOKRETOV"></option>
+                </datalist>
+            </td>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+
+<h3>Pretraga po ceni</h3>
+<form action="~/Proizvodi/PretragaPoCeni" method="get">
+    <table>
+        <tr>
+            <td>Od:</td>
+            <td><input type="number" name="minCena" /></td>
+            <td>Do:</td>
+            <td><input type="number" name="maxCena" /></td>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+
+@if (korisnik == null)
+{
+    <a href="~/Authentication/Index">Login</a>
+}
+else if (korisnik != null)
+{
+    if (korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
+    {
+        <a href="~/Korisnici/Index">Korisnici </a>
+    }
+    <a href="~/Authentication/Logout">LogOut</a>
+}

@@ -27,7 +27,7 @@ namespace Web_PR_53_2017.Controllers
             return View();
         }
 
-        //POST Authentication/Register
+        //POST Authentication/Registracija
         [HttpPost]
         public ActionResult Registracija(Korisnik korisnik)
         {
@@ -84,7 +84,7 @@ namespace Web_PR_53_2017.Controllers
 
             List<Korisnik> korisnici = (List<Korisnik>)HttpContext.Application["korisnici"];
             Korisnik kor = korisnici.FirstOrDefault(k => k.KorisnickoIme == korisnickoIme && k.Lozinka == lozinka);
-            if (kor != null)
+            if (kor != null && kor.Aktivan==true)
             {
                 Session["korisnik"] = kor;
                 return RedirectToAction("Index", "Proizvodi");

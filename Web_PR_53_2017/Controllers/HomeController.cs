@@ -11,16 +11,17 @@ namespace Web_PR_53_2017.Controllers
     {
         public ActionResult Index()
         {
+            /*
             Korisnik korisnik = (Korisnik)Session["korisnik"];
             if (korisnik == null)
             {
                 return RedirectToAction("Index", "Authentication");
-            }
+            }*/
 
             //dodaj sesiju za shopping cart ako ima
 
             //List<Proizvod> proizvodi = (List<Proizvod>)HttpContext.Application["proizvodi"];
-            return View("Index","Proizvodi");
+            return RedirectToAction("Index","Proizvodi");
         }
         
     }

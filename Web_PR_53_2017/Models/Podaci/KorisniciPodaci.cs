@@ -35,7 +35,7 @@ namespace Web_PR_53_2017.Models.Podaci
             string[] str = linija.Split(';');
             Korisnik kor = new Korisnik() { KorisnickoIme=str[0], Lozinka=str[1], Ime=str[2], Prezime=str[3],
                 Pol=(Pol)Enum.Parse(typeof(Pol), str[4]), Email=str[5], DatumRodjenja=DateTime.Parse(str[6],MyCultureInfo),
-                Uloga=(Uloga)Enum.Parse(typeof(Uloga), str[7])};
+                Uloga=(Uloga)Enum.Parse(typeof(Uloga), str[7]), Aktivan=Boolean.Parse(str[8])};
             return kor;
         }
 
@@ -49,6 +49,20 @@ namespace Web_PR_53_2017.Models.Podaci
                     //// {
                     sw.WriteLine(kor.ToString());
                     //}
+                }
+            }
+        }
+
+        public static void UpdateKorisnici()
+        {
+            if (File.Exists(putanja))
+            {
+                using (StreamWriter sw = new StreamWriter(putanja))
+                {
+                    foreach(Korisnik kor in korisnici)
+                    {
+                        sw.WriteLine(kor.ToString());
+                    }
                 }
             }
         }
