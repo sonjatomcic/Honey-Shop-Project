@@ -1,7 +1,64 @@
-﻿
+﻿@model Web_PR_53_2017.Models.Proizvod
+@using Web_PR_53_2017.Models
 @{
     ViewBag.Title = "Dodaj";
 }
 
 <h2>Dodaj</h2>
+
+<div>@ViewBag.Greska</div>
+
+<form action="~/Proizvodi/Dodaj" method="post">
+    <input type="hidden" name="id" value="@ViewBag.id" />
+    <table>
+        <tr>
+            <td>Naziv:</td>
+            <td><input type="text" name="naziv" /></td>
+        </tr>
+        <tr>
+            <td>Vrsta:</td>
+            <td>
+                <input list="vrste" name="vrsta" />
+                <datalist id="vrste">
+                    <option value="LIVADSKI "></option>
+                    <option value="CVETNI"></option>
+                    <option value="BAGREMOV"></option>
+                    <option value="RUZIN"></option>
+                    <option value="SUNCOKRETOV"></option>
+                </datalist>
+            </td>
+        </tr>
+        <tr>
+            <td>Proizvodjac:</td>
+            <td><input type="text" name="proizvodjac" /></td>
+        </tr>
+        <tr>
+            <td>Adresa proizvodjaca:</td>
+            <td><input type="text" name="adresaProizvodjaca" /></td>
+        </tr>
+        <tr>
+            <td>Boja:</td>
+            <td><input type="text" name="boja" /></td>
+        </tr>
+        <tr>
+            <td>Opis:</td>
+            <td><input type="text" name="opis" /></td>
+        </tr>
+        <tr>
+            <td>Cena po tegli:</td>
+            <td><input type="text" name="cenaPoTegli" /></td>
+        </tr>
+        <tr>
+            <td>Broj tegli:</td>
+            <td><input type="number" name="brojTegli" /></td>
+        </tr>
+      
+        <tr>
+            <td colspan="2"><input type="submit" value="Dodaj" /></td>
+        </tr>
+    </table>
+
+</form>
+
+<a href="~/Proizvodi/Index">Proizvodi</a>
 

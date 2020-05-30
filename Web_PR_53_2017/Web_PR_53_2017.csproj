@@ -178,6 +178,7 @@
     <Content Include="Views\Proizvodi\Index.cshtml" />
     <Content Include="Views\Korisnici\Index.cshtml" />
     <Content Include="Views\Proizvodi\Dodaj.cshtml" />
+    <Content Include="Views\Proizvodi\Izmeni.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

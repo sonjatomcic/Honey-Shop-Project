@@ -46,7 +46,10 @@ namespace Web_PR_53_2017.Controllers
                 for(int i = 0; i < kor.Count; i++)
                 {
                     if (kor[i].Uloga.Equals(Uloga.KUPAC) && kor[i].KorisnickoIme.Equals(korisnickoIme))
+                    {
                         kor[i] = k;
+                        break;
+                    }
                 }
                 KorisniciPodaci.korisnici = kor;
                 KorisniciPodaci.UpdateKorisnici();

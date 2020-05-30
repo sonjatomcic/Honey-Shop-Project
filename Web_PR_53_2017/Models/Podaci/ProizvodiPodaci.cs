@@ -61,5 +61,19 @@ namespace Web_PR_53_2017.Models.Podaci
                 }
             }
         }
+
+        public static void UpdateProizvodi()
+        {
+            if (File.Exists(putanja))
+            {
+                using (StreamWriter sw = new StreamWriter(putanja))
+                {
+                    foreach (Proizvod p in proizvodi)
+                    {
+                        sw.WriteLine(p.ToString());
+                    }
+                }
+            }
+        }
     }
 }

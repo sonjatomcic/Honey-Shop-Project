@@ -21,6 +21,7 @@
         @if (korisnik != null && korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
         {
             <th>Broj tegli</th>
+            <th></th>
         }
     </tr>
     @foreach (Proizvod p in ViewBag.Proizvodi)
@@ -37,6 +38,12 @@
             @if (korisnik != null && korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
             {
                 <td>@p.BrojTegli</td>
+                <td>
+                    <form action="~/Proizvodi/Izmeni" method="get">
+                        <input type="hidden" name="id" value="@p.Id" />
+                        <input type="submit" value="Izmeni" class="btn btn-primary" />
+                    </form>
+                </td>
             }
 
         </tr>

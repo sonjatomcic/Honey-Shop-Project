@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Web_PR_53_2017.Models;
+using Web_PR_53_2017.Models.Podaci;
 
 namespace Web_PR_53_2017.Controllers
 {
@@ -35,7 +36,9 @@ namespace Web_PR_53_2017.Controllers
             Korisnik korisnik = (Korisnik)Session["korisnik"];
             if(korisnik!=null && korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
             {
-
+                List<Proizvod> pr = (List<Proizvod>)HttpContext.Application["proizvodi"];
+                int noviId = pr.Last().Id + 1;
+                ViewBag.id = noviId;
                 return View();
             }
             else
@@ -46,12 +49,97 @@ namespace Web_PR_53_2017.Controllers
         }
 
         //POST Proizvod/Dodaj
-        public ActionResult Dodaj(Proizvod prozivod)
+        [HttpPost]
+        public ActionResult Dodaj(Proizvod proizvod)
         {
-            return View();
+            Korisnik korisnik = (Korisnik)Session["korisnik"];
+            if (korisnik != null && korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
+            {
+                if (!ModelState.IsValid)
+                {
+                    ViewBag.Greska = "Polja nisu validna";
+                    return View();
+                }
+
+                //ako u listi vec postoji taj proizvod samo uvecam kolicinu tegli, bez dodavanja
+                List<Proizvod> pr = (List<Proizvod>)HttpContext.Application["proizvodi"];
+                for(int i=0; i <pr.Count(); i++)
+                {
+                    if (pr[i].Equals(proizvod))
+                    {
+                        pr[i].BrojTegli += proizvod.BrojTegli;
+                        ProizvodiPodaci.proizvodi = pr;
+                        ProizvodiPodaci.UpdateProizvodi();
+                        return RedirectToAction("Index");
+                    }
+                }
+
+                pr.Add(proizvod);
+                ProizvodiPodaci.SacuvajProizvodUDatoteku(proizvod);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                //stavi ispis
+                return RedirectToAction("Index", "Authentication");
+            }
+           
+           
         }
 
+        //GET: Izmeni/5
+        public ActionResult Izmeni(int id)
+        {
+            Korisnik korisnik = (Korisnik)Session["korisnik"];
+            if (korisnik != null && korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
+            {
+                List<Proizvod> pr = (List<Proizvod>)HttpContext.Application["proizvodi"];
+                Proizvod p = pr.FirstOrDefault(pro => pro.Id == id);
+                return View(p);
+            }
+            else
+            {
+                //stavi ispis
+                return RedirectToAction("Index", "Authentication");
+            }
+        }
 
+        //POST: Izmeni
+        [HttpPost]
+        public ActionResult Izmeni(Proizvod proizvod)
+        {
+            Korisnik korisnik = (Korisnik)Session["korisnik"];
+            if (korisnik != null && korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
+            {
+                if (!ModelState.IsValid)
+                {
+                    ViewBag.Greska = "Polja nisu validna";
+                    return View();
+                }
+
+                //ako u listi vec postoji taj proizvod samo uvecam kolicinu tegli, bez dodavanja
+                List<Proizvod> pr = (List<Proizvod>)HttpContext.Application["proizvodi"];
+                
+                
+                for (int i = 0; i < pr.Count(); i++)
+                {
+                    if (pr[i].Id==proizvod.Id)
+                    {
+                        pr[i] = proizvod;
+                        ProizvodiPodaci.proizvodi = pr;
+                        ProizvodiPodaci.UpdateProizvodi();
+                        break;
+                    }
+                }
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                //stavi ispis
+                return RedirectToAction("Index", "Authentication");
+            }
+
+        }
 
         //GET: Proizvodi/Sortiraj
         public ActionResult Sortiraj(string vrsta="NAZIV", string nacin="RASTUCE")
