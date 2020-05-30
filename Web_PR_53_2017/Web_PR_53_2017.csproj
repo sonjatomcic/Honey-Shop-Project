@@ -122,6 +122,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KorisniciController.cs" />
     <Compile Include="Controllers\ProizvodiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -175,6 +176,8 @@
     <Content Include="Views\Authentication\Registracija.cshtml" />
     <Content Include="Views\Authentication\Login.cshtml" />
     <Content Include="Views\Proizvodi\Index.cshtml" />
+    <Content Include="Views\Korisnici\Index.cshtml" />
+    <Content Include="Views\Proizvodi\Dodaj.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

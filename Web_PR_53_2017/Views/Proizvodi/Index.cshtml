@@ -18,7 +18,10 @@
         <th>Boja</th>
         <th>Opis</th>
         <th>Cena po Tegli</th>
-        <th>Broj tegli</th>
+        @if (korisnik != null && korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
+        {
+            <th>Broj tegli</th>
+        }
     </tr>
     @foreach (Proizvod p in ViewBag.Proizvodi)
     {
@@ -31,12 +34,21 @@
             <td>@p.Boja</td>
             <td>@p.Opis</td>
             <td>@p.CenaPoTegli</td>
-            <td>@p.BrojTegli</td>
+            @if (korisnik != null && korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
+            {
+                <td>@p.BrojTegli</td>
+            }
+
         </tr>
     }
 
 </table>
-
+<a href="~/Proizvodi/Index">Svi proizvodi</a>
+@if (korisnik != null && korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
+{
+<a href="~/Proizvodi/Dodaj">Dodaj proizvod</a>
+}
+<br />
 
 <h3>Sortiraj proizvode</h3>
 <form action="~/Proizvodi/Sortiraj" method="get">
@@ -106,8 +118,15 @@
     </table>
 </form>
 
-
-@if (korisnik != null)
+@if (korisnik == null)
 {
+    <a href="~/Authentication/Index">Login</a>
+}
+else if (korisnik != null)
+{
+    if (korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
+    {
+        <a href="~/Korisnici/Index">Korisnici </a>
+    }
     <a href="~/Authentication/Logout">LogOut</a>
 }

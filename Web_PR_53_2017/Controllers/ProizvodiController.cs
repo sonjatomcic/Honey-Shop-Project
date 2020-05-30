@@ -29,6 +29,30 @@ namespace Web_PR_53_2017.Controllers
             return View();
         }
 
+        //GET: Proizvodi/Dodaj
+        public ActionResult Dodaj()
+        {
+            Korisnik korisnik = (Korisnik)Session["korisnik"];
+            if(korisnik!=null && korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
+            {
+
+                return View();
+            }
+            else
+            {
+                //stavi ispis
+                return RedirectToAction("Index", "Authentication");
+            }
+        }
+
+        //POST Proizvod/Dodaj
+        public ActionResult Dodaj(Proizvod prozivod)
+        {
+            return View();
+        }
+
+
+
         //GET: Proizvodi/Sortiraj
         public ActionResult Sortiraj(string vrsta="NAZIV", string nacin="RASTUCE")
         {
