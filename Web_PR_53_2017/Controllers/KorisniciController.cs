@@ -53,6 +53,10 @@ namespace Web_PR_53_2017.Controllers
                 }
                 KorisniciPodaci.korisnici = kor;
                 KorisniciPodaci.UpdateKorisnici();
+
+                //treba update kupovine, da se skloni korisnik koji vise ne postoji
+                UpdateKupovine(k);
+
                 return RedirectToAction("Index");
                 
             }
@@ -63,6 +67,21 @@ namespace Web_PR_53_2017.Controllers
             
         }
         
+        public void UpdateKupovine(Korisnik korisnik)
+        {
+            //List<Korisnik> kor = (List<Korisnik>)HttpContext.Application["korisnici"];
+            List<Kupovina> ku = (List<Kupovina>)HttpContext.Application["kupovine"];
+            for(int i = 0; i < ku.Count; i++)
+            {
+                if (ku[i].KorisnickoImeKupca.Equals(korisnik.KorisnickoIme))
+                {
+                    ku.RemoveAt(i);
+                }
+            }
+            KupovinePodaci.kupovine = ku;
+            KupovinePodaci.UpdateKupovina();
+
+        }
 
     }
 }

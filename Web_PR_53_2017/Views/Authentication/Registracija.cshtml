@@ -6,48 +6,62 @@
 
 <h2>Registracija</h2>
 
-<div>@ViewBag.Greska</div>
+@*<div>@ViewBag.Greska</div>*@
 
 <form action="~/Authentication/Registracija" method="post">
     <table>
         <tr>
             <td>Korisnicko Ime:</td>
             <td><input type="text" name="korisnickoIme" /></td>
+            <td>@ViewBag.korIme</td>
         </tr>
         <tr>
             <td>Lozinka:</td>
             <td><input type="password" name="lozinka" /></td>
+            <td>@ViewBag.lozinka</td>
         </tr>
         <tr>
             <td>Ime:</td>
             <td><input type="text" name="ime" /></td>
+            <td>@ViewBag.ime</td>
         </tr>
         <tr>
             <td>Prezime:</td>
             <td><input type="text" name="prezime" /></td>
+            <td>@ViewBag.prezime</td>
         </tr>
         <tr>
             <td>Pol:</td>
             <td>
-                <input list="polovi" name="pol" />
-                <datalist id="polovi">
-                    <option value="MUSKI"></option>
-                    <option value="ZENSKI"></option>
-                </datalist>
+                <select id="polovi" name="pol">
+                    <option selected="selected">MUSKI</option>
+                    <option>ZENSKI</option>
+                </select>
+                @*<input list="polovi" name="pol"  />
+                    <datalist id="polovi" >
+                        <option value="MUSKI" ></option>
+                        <option value="ZENSKI"></option>
+                    </datalist>*@
             </td>
+            <td>@ViewBag.pol</td>
         </tr>
         <tr>
             <td>Email:</td>
             <td><input type="text" name="email" /></td>
+            <td>@ViewBag.email</td>
         </tr>
         <tr>
             <td>Datum Rodjenja:</td>
             <td><input type="date" name="datumRodjenja" /></td>
+            <td>@ViewBag.datum</td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Registracija" /></td>
+            <td colspan="2"><input type="submit" value="Registracija" class="btn btn-success" /></td>
         </tr>
     </table>
 
 </form>
+<br/>
+<a href="~/Authentication/Login" class="btn btn-warning">Login</a>
+<a href="~/Proizvodi/Index" class="btn btn-info">Proizvodi</a>
 

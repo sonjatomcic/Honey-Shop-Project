@@ -18,6 +18,10 @@
         <th>Boja</th>
         <th>Opis</th>
         <th>Cena po Tegli</th>
+        @if (korisnik != null && korisnik.Uloga.Equals(Uloga.KUPAC))
+        {
+            <th></th>
+        }
         @if (korisnik != null && korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
         {
             <th>Broj tegli</th>
@@ -35,6 +39,16 @@
             <td>@p.Boja</td>
             <td>@p.Opis</td>
             <td>@p.CenaPoTegli</td>
+            @if (korisnik != null && korisnik.Uloga.Equals(Uloga.KUPAC))
+            {
+                <td>
+                    <form action="~/Kupovine/Detalji" method="get">
+                        <input type="hidden" name="id" value="@p.Id" />
+                        <input type="hidden" name="forma" value="true" />
+                        <input type="submit" value="Izaberi" class="btn btn-primary" />
+                    </form>
+                </td>
+            }
             @if (korisnik != null && korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
             {
                 <td>@p.BrojTegli</td>
@@ -50,10 +64,15 @@
     }
 
 </table>
-<a href="~/Proizvodi/Index">Svi proizvodi</a>
+<a href="~/Proizvodi/Index" class="btn btn-info">Svi proizvodi</a>
 @if (korisnik != null && korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
 {
-<a href="~/Proizvodi/Dodaj">Dodaj proizvod</a>
+    <a href="~/Proizvodi/Dodaj" class="btn btn-success">Dodaj proizvod</a>
+    <a href="~/Korisnici/Index" class="btn btn-warning">Korisnici </a>
+}
+else if (korisnik != null && korisnik.Uloga.Equals(Uloga.KUPAC))
+{
+    <a href="~/Kupovine/Index" class="btn btn-warning">Moje kupovine</a>
 }
 <br />
 
@@ -63,19 +82,28 @@
         <tr>
 
             <td>
-                <input list="sortPo" name="vrsta" />
-                <datalist id="sortPo">
-                    <option value="NAZIV"></option>
-                    <option value="VRSTA MEDA"></option>
-                    <option value="CENA"></option>
-                </datalist>
+                <select id="sortPo" name="vrsta">
+                    <option selected="selected">NAZIV</option>
+                    <option>VRSTA</option>
+                    <option>CENA</option>
+                </select>
+                @*<input list="sortPo" name="vrsta" />
+                    <datalist id="sortPo">
+                        <option value="NAZIV"></option>
+                        <option value="VRSTA MEDA"></option>
+                        <option value="CENA"></option>
+                    </datalist>*@
             </td>
             <td>
-                <input list="sortNacin" name="nacin" />
-                <datalist id="sortNacin">
-                    <option value="RASTUCE"></option>
-                    <option value="OPADAJUCE"></option>
-                </datalist>
+                <select id="sortNacin" name="nacin">
+                    <option selected="selected">RASTUCE</option>
+                    <option>OPADAJUCE</option>
+                </select>
+                @*<input list="sortNacin" name="nacin" />
+                    <datalist id="sortNacin">
+                        <option value="RASTUCE"></option>
+                        <option value="OPADAJUCE"></option>
+                    </datalist>*@
             </td>
             <td><input type="submit" value="Submit" /></td>
 
@@ -98,14 +126,21 @@
     <table>
         <tr>
             <td>
-                <input list="vrste" name="vrsta" />
-                <datalist id="vrste">
-                    <option value="LIVADSKI"></option>
-                    <option value="CVETNI"></option>
-                    <option value="BAGREMOV"></option>
-                    <option value="RUZIN"></option>
-                    <option value="SUNCOKRETOV"></option>
-                </datalist>
+                <select id="vrste" name="vrsta">
+                    <option selected="selected">LIVADSKI</option>
+                    <option>CVETNI</option>
+                    <option>BAGREMOV</option>
+                    <option>RUZIN</option>
+                    <option>SUNCOKRETOV</option>
+                </select>
+                @*<input list="vrste" name="vrsta" />
+                    <datalist id="vrste">
+                        <option value="LIVADSKI"></option>
+                        <option value="CVETNI"></option>
+                        <option value="BAGREMOV"></option>
+                        <option value="RUZIN"></option>
+                        <option value="SUNCOKRETOV"></option>
+                    </datalist>*@
             </td>
             <td><input type="submit" value="Submit" /></td>
         </tr>
@@ -127,13 +162,21 @@
 
 @if (korisnik == null)
 {
-    <a href="~/Authentication/Index">Login</a>
+    <br />
+    <a href="~/Authentication/Index" class="btn btn-warning">Login</a>
 }
 else if (korisnik != null)
 {
-    if (korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
+    @*if (korisnik.Uloga.Equals(Uloga.ADMINISTRATOR))
+        {
+            <br />
+
+        }*@
+    @*if (korisnik.Uloga.Equals(Uloga.KUPAC))
     {
-        <a href="~/Korisnici/Index">Korisnici </a>
-    }
-    <a href="~/Authentication/Logout">LogOut</a>
+        <br />
+
+    }*@
+    <br/>
+    <a href="~/Authentication/Logout" class="btn btn-danger">LogOut</a>
 }

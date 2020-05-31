@@ -27,6 +27,10 @@ namespace Web_PR_53_2017
             List<Proizvod> proizvodi = ProizvodiPodaci.proizvodi;
             HttpContext.Current.Application["proizvodi"] = proizvodi;
 
+            KupovinePodaci.UcitajKupovineIzDatoteke();
+            List<Kupovina> kupovine = KupovinePodaci.kupovine;
+            HttpContext.Current.Application["kupovine"] = kupovine;
+
         }
     }
 }

@@ -123,6 +123,7 @@
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KorisniciController.cs" />
+    <Compile Include="Controllers\KupovineController.cs" />
     <Compile Include="Controllers\ProizvodiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -130,6 +131,7 @@
     <Compile Include="Models\Korisnik.cs" />
     <Compile Include="Models\Kupovina.cs" />
     <Compile Include="Models\Podaci\KorisniciPodaci.cs" />
+    <Compile Include="Models\Podaci\KupovinePodaci.cs" />
     <Compile Include="Models\Podaci\ProizvodiPodaci.cs" />
     <Compile Include="Models\Pol.cs" />
     <Compile Include="Models\Proizvod.cs" />
@@ -139,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Korisnici.txt" />
+    <Content Include="App_Data\Kupovine.txt" />
     <Content Include="App_Data\Proizvodi.txt" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -179,6 +182,8 @@
     <Content Include="Views\Korisnici\Index.cshtml" />
     <Content Include="Views\Proizvodi\Dodaj.cshtml" />
     <Content Include="Views\Proizvodi\Izmeni.cshtml" />
+    <Content Include="Views\Kupovine\Detalji.cshtml" />
+    <Content Include="Views\Kupovine\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

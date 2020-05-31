@@ -4,3 +4,7 @@ admin3;miki;mira;miric;ZENSKI;mira@gmail.com;21/09/1998;ADMINISTRATOR;True
 solesokol;sonjatomcic;sonja;tomcic;ZENSKI;sonjatomcic@gmail.com;04/02/1999;KUPAC;True
 djule;djuki;djurdja;citakovic;ZENSKI;djuka@gmail.com;29/01/1999;KUPAC;True
 rada;rada;radmila;rad;ZENSKI;rada@gmail.com;12/05/2020;KUPAC;False
+nnnn;nnnnnnnn;n;n;MUSKI;nnnnnn;13/05/2020;KUPAC;False
+mmmm;mmmmmmmm;m;m;MUSKI;mmmm;09/04/2020;KUPAC;False
+mmmm;mmmmmmmm;m;m;MUSKI;mmmmm;28/04/2020;KUPAC;True
+maki;markomaki;marko;markovic;MUSKI;marko@mail.com;22/05/2020;KUPAC;True
