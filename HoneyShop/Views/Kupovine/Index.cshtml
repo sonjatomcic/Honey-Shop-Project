@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Kupovina>
+@using HoneyShop.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    Korisnik korisnik = (Korisnik)Session["korisnik"];
+
+}
+
+<h2>Kupovine</h2>
+
+<table class="table table-hover table-striped">
+
+
+
+    <tr>
+        <th>Id</th>
+        <th>Kupac</th>
+        <th>Proizvod</th>
+        <th>Datum kupovine</th>
+        <th>Kolicina</th>
+        <th>Ukupna cena</th>
+
+    </tr>
+    @foreach (Kupovina k in Model)
+    {
+
+        <tr>
+            <td>@k.Id</td>
+            <td>@k.KorisnickoImeKupca</td>
+
+            <td>
+
+                <form action="~/Kupovine/Detalji" method="get">
+                    <input type="hidden" name="id" value="@k.ProizvodId" />
+                    <input type="hidden" name="forma" value="false" />
+                    <input type="submit" value="@k.Proizvod-Info" class="btn btn-primary" />
+                </form>
+            </td>
+            <td>@k.DatumKupovine.ToString("dd/MM/yyyy")</td>
+            <td>@k.BrojNarucenihTegli</td>
+            <td>@k.UkupnaCena</td>
+
+        </tr>
+    }
+
+</table>
+
+<a href="~/Proizvodi/Index" class="btn btn-info">Proizvodi</a>
+<a href="~/Authentication/Logout" class="btn btn-danger">LogOut</a>
+
